@@ -2,27 +2,20 @@
 
 using namespace std;
 
-Node::Node() {
-    cargo = 0;
-    next = nullptr;
-}
-
-Node::Node(int cargo) {
+template <class T>
+Node<T>::Node(T cargo) {
     this->cargo = cargo;
     next = nullptr;
 }
 
-Node::Node(int cargo, Node* next) {
+template <class T>
+Node<T>::Node(T cargo, Node<T>* next) {
     this->cargo = cargo;
     this->next = next;
 }
 
-string Node::to_string() {
-        return std::to_string(this->cargo);
-}
-
-string render_list(Node *list, string seperator) {
-    Node* node = list;
+string render_list(Node<int> *list, string seperator) {
+    Node<int>* node = list;
     string s = "";
     while (node != nullptr) {
         s += node->to_string();
@@ -33,14 +26,14 @@ string render_list(Node *list, string seperator) {
     return s;
 }
 
-string render_list_backward(Node* list, string seperator) {
+string render_list_backward(Node<int>* list, string seperator) {
     return render_backward_worker(list, seperator, "");
 }
 
-string render_backward_worker(Node *list, string seperator, string s) {
+string render_backward_worker(Node<int> *list, string seperator, string s) {
     if (list == nullptr) return "";
-    Node* head = list;
-    Node* tail = list->next;
+    Node<int>* head = list;
+    Node<int>* tail = list->next;
 
     s = render_backward_worker(tail, seperator, s) + s;
     if (head->next != nullptr)
@@ -50,13 +43,13 @@ string render_backward_worker(Node *list, string seperator, string s) {
     return s;
 }
 
-string render_pretty(Node* list, string (*list_renderer)(Node*, string)) {
+string render_pretty(Node<int>* list, string (*list_renderer)(Node<int>*, string)) {
     return "(" + list_renderer(list, ", ") + ")";
 }
 
-Node* remove_second(Node* list) {
-    Node* first = list;
-    Node* second = list->next;
+Node<int>* remove_second(Node<int>* list) {
+    Node<int>* first = list;
+    Node<int>* second = list->next;
 
     // make the first node point to the third
     first->next = second->next;
@@ -66,17 +59,9 @@ Node* remove_second(Node* list) {
     return second;
 }
 
-void LinkedList::insert_in_front(int cargo) {
-    Node* front = new Node(cargo, head);
+template <class T>
+void LinkedList<T>::insert_in_front(T cargo) {
+    Node<T>* front = new Node<T>(cargo, head);
     head = front;
     num_nodes++;
 }
-
-string LinkedList::to_string() {
-    if (num_nodes == 0) {
-        return "Empty list";
-    }
-
-    return render_list(head, " -> ");
-}
-

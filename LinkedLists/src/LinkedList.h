@@ -2,35 +2,48 @@ using namespace std;
 
 #include <string>
 
+template <class T = int>
 struct Node {
-    int cargo;
-    Node* next;
+    T cargo;
+    Node<T>* next;
 
     // Constructors
-    Node();
-    Node(int);
-    Node(int, Node*);
+    Node(T val) : cargo(val) {}
+    Node(T val, Node<T>* next) : cargo(val) 
 
     // Methods
-    string to_string();
+    template<typename U = T, typename enable_if<is_same<U, int>::value, int>::type = 0>
+    string to_string() {
+
+        return std::to_string(this->cargo);
+    }
 };
 
-class LinkedList
-{
+template <class T = int>
+class LinkedList {
     int num_nodes;
-    Node* head;
+    Node<T>* head;
 
 public:
     LinkedList() {
         num_nodes = 0;
         head = nullptr;
     }
-    void insert_in_front(int);
-    string to_string();
+    void insert_in_front(T);
+    
+    template<typename U = T, typename enable_if<is_same<U, int>::value, int>::type = 0>
+    string to_string() {
+        if (num_nodes == 0) {
+            return "Empty list";
+        }
+
+        return render_list(head, " -> ");
+    }
+
 };
 
-string render_list(Node*, string=", ");
-string render_list_backward(Node*, string=", ");
-string render_backward_worker(Node*, string, string="");
-string render_pretty(Node*, string (*)(Node*, string));
-Node* remove_second(Node*);
+string render_list(Node<int>*, string=", ");
+string render_list_backward(Node<int>*, string=", ");
+string render_backward_worker(Node<int>*, string, string="");
+string render_pretty(Node<int>*, string (*)(Node<int>*, string));
+Node<int>* remove_second(Node<int>*);
