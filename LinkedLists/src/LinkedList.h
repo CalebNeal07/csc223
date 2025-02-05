@@ -19,3 +19,4 @@ string render_list(Node*);
 string render_list_backward(Node*);
 string render_backward_worker(Node*, string="");
 string render_pretty(Node*, string (*)(Node*));
+Node* remove_second(Node*);
