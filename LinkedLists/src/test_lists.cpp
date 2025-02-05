@@ -61,3 +61,14 @@ TEST_CASE("Test can remove second element from a linked list") {
     Node* second_node = remove_second(node4);
     CHECK(render_list(node4) == "4, 2, 1");
 }
+
+TEST_CASE("Test can create empty linked list") {
+    LinkedList list;
+    CHECK(list.to_string() == "Empty list");
+    list.insert_in_front(5);
+    CHECK(list.to_string() == "5");
+    list.insert_in_front(42);
+    CHECK(list.to_string() == "42 -> 5");
+    list.insert_in_front(9);
+    CHECK(list.to_string() == "9 -> 42 -> 5");
+}

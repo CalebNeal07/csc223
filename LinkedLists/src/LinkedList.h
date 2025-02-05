@@ -15,8 +15,22 @@ struct Node {
     string to_string();
 };
 
-string render_list(Node*);
-string render_list_backward(Node*);
-string render_backward_worker(Node*, string="");
-string render_pretty(Node*, string (*)(Node*));
+class LinkedList
+{
+    int num_nodes;
+    Node* head;
+
+public:
+    LinkedList() {
+        num_nodes = 0;
+        head = nullptr;
+    }
+    void insert_in_front(int);
+    string to_string();
+};
+
+string render_list(Node*, string=", ");
+string render_list_backward(Node*, string=", ");
+string render_backward_worker(Node*, string, string="");
+string render_pretty(Node*, string (*)(Node*, string));
 Node* remove_second(Node*);
