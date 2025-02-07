@@ -2,8 +2,7 @@
 
 using namespace std;
 
-template <class T>
-Node<T>::Node(T cargo) {
+Node::Node(int cargo) {
     this->cargo = cargo;
     next = nullptr;
 }
@@ -14,37 +13,41 @@ Node<T>::Node(T cargo, Node<T>* next) {
     this->next = next;
 }
 
-string render_list(Node<int> *list, string seperator) {
-    Node<int>* node = list;
+string Node::to_string() {
+        return std::to_string(this->cargo);
+}
+
+string render_list(Node *list) {
+    Node* node = list;
     string s = "";
     while (node != nullptr) {
         s += node->to_string();
         node = node->next;
         if (node != nullptr)
-           s += seperator;
+           s += ", ";
     }
     return s;
 }
 
-string render_list_backward(Node<int>* list, string seperator) {
-    return render_backward_worker(list, seperator, "");
+string render_list_backward(Node* list) {
+    return render_backward_worker(list, "");
 }
 
-string render_backward_worker(Node<int> *list, string seperator, string s) {
+string render_backward_worker(Node *list, string s) {
     if (list == nullptr) return "";
     Node<int>* head = list;
     Node<int>* tail = list->next;
 
-    s = render_backward_worker(tail, seperator, s) + s;
+    s = render_backward_worker(tail, s) + s;
     if (head->next != nullptr)
-        s += seperator;
+        s += ", ";
     s += head->to_string();
 
     return s;
 }
 
-string render_pretty(Node<int>* list, string (*list_renderer)(Node<int>*, string)) {
-    return "(" + list_renderer(list, ", ") + ")";
+string render_pretty(Node* list, string (*list_renderer)(Node*)) {
+    return "(" + list_renderer(list) + ")";
 }
 
 Node<int>* remove_second(Node<int>* list) {
@@ -57,11 +60,4 @@ Node<int>* remove_second(Node<int>* list) {
     // remove the second node from the list and return a pointer to it
     second->next = nullptr;
     return second;
-}
-
-template <class T>
-void LinkedList<T>::insert_in_front(T cargo) {
-    Node<T>* front = new Node<T>(cargo, head);
-    head = front;
-    num_nodes++;
 }
