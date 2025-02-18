@@ -35,56 +35,54 @@ private:
 public:
     // ... (Methods: push, pop, insert, delete, etc.)
 };
+```
 
-Operations on Doubly Linked Lists
+## Operations on Doubly Linked Lists
 
-    Insertion:
-        At the beginning (push): O(1)
-        At the end: O(1) (if tail pointer is maintained) or O(n)
-        At a specific position: O(n)
-    Deletion:
-        From the beginning (pop): O(1)
-        From the end: O(1) (if tail pointer is maintained) or O(n)
-        At a specific position: O(n)
-    Traversal:
-        Forward: O(n)
-        Backward: O(n)
-    Search: O(n)
+ -  Insertion:
+     -  At the beginning (push): O(1)
+     -  At the end: O(1) (if tail pointer is maintained) or O(n)
+     -  At a specific position: O(n)
+ -  Deletion:
+     -  From the beginning (pop): O(1)
+     -  From the end: O(1) (if tail pointer is maintained) or O(n)
+     -  At a specific position: O(n)
+ -  Traversal:
+     -  Forward: O(n)
+     -  Backward: O(n)
+ -  Search: O(n)
 
-Use Case: Undo/Redo Functionality
+## Use Case: Undo/Redo Functionality
 
-    Concept: Doubly linked lists are an excellent choice for implementing undo/redo functionality in applications like text editors, image editors, or web browsers.
-    Implementation:
-        Each node in the list represents an action performed by the user.
-        The data field of the node stores the action itself (e.g., "insert text", "delete image", "change color").
-        The next pointer points to the next action in the sequence (redo).
-        The prev pointer points to the previous action (undo).
-        A "current" pointer keeps track of the current state.
-    Undo:
-        Move the "current" pointer one step back (current = current->prev).
-        Revert the action represented by the node pointed to by the new "current" pointer.
-    Redo:
-        Move the "current" pointer one step forward (current = current->next).
-        Apply the action represented by the node pointed to by the new "current" pointer.
-    Example:
-        User types "Hello". (Node 1)
-        User types "World". (Node 2)
-        User presses Undo. (current -> Node 1)
-        "World" is removed.
-        User presses Redo. (current -> Node 2)
-        "World" is added back.
+ - Concept: Doubly linked lists are an excellent choice for implementing undo/redo functionality in applications like text editors, image editors, or web browsers. 
+ - Implementation:
+     -  Each node in the list represents an action performed by the user.
+     -  The data field of the node stores the action itself (e.g., "insert text", "delete image", "change color").
+     -  The next pointer points to the next action in the sequence (redo).
+     -  The prev pointer points to the previous action (undo).
+     -  A "current" pointer keeps track of the current state.
+ -  Undo:
+     -  Move the "current" pointer one step back (current = current->prev).
+     -  Revert the action represented by the node pointed to by the new "current" pointer.
+ -  Redo:
+     -  Move the "current" pointer one step forward (current = current->next).
+     -  Apply the action represented by the node pointed to by the new "current" pointer.
+ -  Example:
+     -  User types "Hello". (Node 1)
+     -  User types "World". (Node 2)
+     -  User presses Undo. (current -> Node 1)
+     -  "World" is removed.
+     -  User presses Redo. (current -> Node 2)
+     -  "World" is added back.
 
-Advantages for Undo/Redo
+## Advantages for Undo/Redo
 
-    Efficient Undo/Redo: Moving between actions is very fast (O(1)).
-    Easy to Add/Remove Actions: Inserting and deleting nodes (actions) is efficient.
-    Clear History: The list maintains a clear history of actions.
+ -  Efficient Undo/Redo: Moving between actions is very fast (O(1)).
+ -  Easy to Add/Remove Actions: Inserting and deleting nodes (actions) is efficient.
+ -  Clear History: The list maintains a clear history of actions.
 
-Disadvantages
+## Disadvantages
 
-    Memory Usage: Doubly linked lists use more memory than singly linked lists due to the prev pointer.
-    Random Access: Accessing a specific node by index is O(n).
+ -  Memory Usage: Doubly linked lists use more memory than singly linked lists due to the prev pointer.
+ -  Random Access: Accessing a specific node by index is O(n).
 
-Conclusion
-
-Doubly linked lists offer a powerful and flexible way to manage ordered data. Their ability to traverse in both directions makes them particularly well-suited for applications requiring undo/redo functionality, providing an efficient and intuitive way to manage user actions.
