@@ -2,6 +2,7 @@
 #include <doctest.h>
 #include <string>
 #include "LinkedList.h"
+#include "DoublyLinkedList.h"
 using namespace std;
 
 TEST_CASE("Test can create and render List Nodes") {
@@ -82,4 +83,13 @@ TEST_CASE("Test can remove front element") {
     list.insert_in_front(73);
     CHECK(list.remove_from_front() == 73);
     CHECK(list.to_string() == "999999999 -> 8 -> 6 -> 5");
+}
+
+
+TEST_CASE("Test DoublyLinkedList can push items") {
+    DoublyLinkedList<int> list;
+    list.push(54);
+    list.push(23);
+    list.push(36);
+    CHECK(list.to_string() == "36 <-> 23 <-> 54");
 }
