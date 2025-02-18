@@ -89,8 +89,8 @@ public:
  -  Random Access: Accessing a specific node by index is O(n).
 
 
-#### Refrences
-[https://en.wikipedia.org/wiki/Doubly_linked_list](https://en.wikipedia.org/wiki/Doubly_linked_list)
+#### References
+[https://en.wikipedia.org/wiki/Doubly_linked_list](https://en.wikipedia.org/wiki/Doubly_linked_list)  
 [https://www.programiz.com/dsa/doubly-linked-list](https://www.programiz.com/dsa/doubly-linked-list)
 
 
