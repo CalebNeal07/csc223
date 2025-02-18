@@ -8,6 +8,8 @@
     * Allow traversal in both directions (forward and backward).
     * More flexible than singly linked lists for certain operations.
 
+<img width="780" alt="doubly-linked-list-created" src="https://github.com/user-attachments/assets/241414ff-6771-4470-b7ba-e38fdbefda48" />
+
 ## Structure of a Doubly Linked List
 
 * **Node:**
@@ -85,4 +87,10 @@ public:
 
  -  Memory Usage: Doubly linked lists use more memory than singly linked lists due to the prev pointer.
  -  Random Access: Accessing a specific node by index is O(n).
+
+
+#### Refrences
+[https://en.wikipedia.org/wiki/Doubly_linked_list](https://en.wikipedia.org/wiki/Doubly_linked_list)
+[https://www.programiz.com/dsa/doubly-linked-list](https://www.programiz.com/dsa/doubly-linked-list)
+
 
