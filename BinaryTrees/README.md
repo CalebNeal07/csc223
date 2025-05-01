@@ -6,9 +6,9 @@
 def print_tree(node, left_accessor: nil, right_accessor: nil, value_accessor: nil, prefix: "", is_left: true)
   return if node.nil?
 
-  left_accessor  ||= ->(n) { n.left }
-  right_accessor ||= ->(n) { n.right }
-  value_accessor ||= ->(n) { n.to_s }
+  left_accessor  ||= -> (n) { n.left }
+  right_accessor ||= -> (n) { n.right }
+  value_accessor ||= -> (n) { n.to_s }
 
   right_child = right_accessor.call(node)
   left_child  = left_accessor.call(node)
