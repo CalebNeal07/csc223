@@ -66,8 +66,8 @@ root.r = MyNode.new("Right")
 
 print_tree(  # with accessors
   root,
-  left_accessor: ->(n) { n.l },
-  right_accessor: ->(n) { n.r },
-  value_accessor: ->(n) { n.value }
+  left_accessor: -> (n) { n.l },
+  right_accessor: -> (n) { n.r },
+  value_accessor: -> (n) { n.value }
 )
 ```
