@@ -7,8 +7,15 @@ class BinarySearchTree
         end
     end
 
-    def initialize 
-        @value = nil
+    def initialize(values = nil)
+        if values == nil 
+            @value = nil
+            return
+        else 
+            for value in values
+                self.insert(value)
+            end
+        end
     end
 
     def empty?
