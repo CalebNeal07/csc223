@@ -1,4 +1,4 @@
-def print_tree(node, left_accessor: nil, right_accessor: nil, value_accessor: nil, prefix: "", is_left: true)
+def print_tree(node, left_accessor: nil, right_accessor: nil, value_accessor: nil, prefix: "", is_left: true, is_root: true)
   return if node.nil?
 
   left_accessor  ||= ->(n) { n.left }
@@ -8,15 +8,27 @@ def print_tree(node, left_accessor: nil, right_accessor: nil, value_accessor: ni
   right_child = right_accessor.call(node)
   left_child  = left_accessor.call(node)
 
-  print_tree(right_child, left_accessor: left_accessor, right_accessor: right_accessor,
-             value_accessor: value_accessor,
-             prefix: prefix + (is_left ? "│   " : "    "), is_left: false)
+    if !is_root
+    print_tree(right_child,
+               left_accessor: left_accessor, right_accessor: right_accessor, value_accessor: value_accessor,
+               prefix: prefix + (is_left ? "│   " : "    "), is_left: false, is_root: false)
+  else
+    print_tree(right_child,
+               left_accessor: left_accessor, right_accessor: right_accessor, value_accessor: value_accessor,
+               prefix: " ", is_left: false, is_root: false)
+  end
 
-  puts prefix + (is_left ? "└── " : "┌── ") + value_accessor.call(node)
+  puts (is_root ? " " : prefix) + (is_root ? "" : (is_left ? "└── " : "┌── ")) + value_accessor.call(node)
 
-  print_tree(left_child, left_accessor: left_accessor, right_accessor: right_accessor,
-             value_accessor: value_accessor,
-             prefix: prefix + (is_left ? "    " : "│   "), is_left: true)
+  if !is_root
+    print_tree(left_child,
+               left_accessor: left_accessor, right_accessor: right_accessor, value_accessor: value_accessor,
+               prefix: prefix + (is_left ? "    " : "│   "), is_left: true, is_root: false)
+  else
+    print_tree(left_child,
+               left_accessor: left_accessor, right_accessor: right_accessor, value_accessor: value_accessor,
+               prefix: " ", is_left: true, is_root: false)
+  end
 end
 
 class TreeNode
